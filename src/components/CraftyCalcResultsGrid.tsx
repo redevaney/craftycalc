@@ -16,23 +16,26 @@ export const CraftyCalcResultsGrid:  React.FC<ICraftyCalcResultsGridProps> = ({
         return (<Avatar alt='Item' variant="square" src={`https://xivapi.com/${params.getValue(params.id, "icon")}`}/>)
     }
 
+    const showItemCard = () => {
+
+    }
+
 
     const columns: GridColDef[] = [
         {field: 'id', hide: true},
-        {field: 'name', headerName: 'Name', width: 250},
         {
             field: 'icon',
             headerName: 'Icon',
             renderCell: getItemImage,
             width: 150
         },
-
+        {field: 'name', headerName: 'Name', width: 250},
     ]
 
     return (
         <Grid container >
-            <Grid container item xs={6} className="resultsGrid">
-                <DataGrid rows={results} columns={columns} />
+            <Grid container item className="resultsGrid">
+                <DataGrid rows={results} columns={columns} onRowClick={() => showItemCard} />
             </Grid>
         </Grid>
     )

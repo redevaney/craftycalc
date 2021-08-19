@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
 import { IItemSearchKey, IFFXIVResults, IFFXIVItem, findItemByName } from './CraftyCalcActions';
-import { Button, TextField } from '@material-ui/core';
+import { Button, Grid, TextField } from '@material-ui/core';
 import { CraftyCalcResultsGrid } from './CraftyCalcResultsGrid';
+import { CraftyCalcCard } from './CraftyCalcCard';
 import "../styles/styles.scss";
 
 export const CraftyCalcContainer: React.FC = () => {
@@ -27,11 +28,15 @@ export const CraftyCalcContainer: React.FC = () => {
     }
 
     return (
-        <div id="searchGrid">
-            <TextField id="searchQuery" label="Enter Search Term" onChange={(e:ChangeEvent<HTMLInputElement>) => onChangeSearch(e.target.value)} value={searchTerm} />
-            <Button variant="contained" disabled={searchTerm?.length <= 3} onClick={() => searchForItem()}>Search</Button>
-            <CraftyCalcResultsGrid results={searchResults} />
-        </div>
+        <Grid container>
+            <Grid container item xs={6} className="leftGrid">
+                <TextField id="searchQuery" label="Enter Search Term" onChange={(e:ChangeEvent<HTMLInputElement>) => onChangeSearch(e.target.value)} value={searchTerm} />
+                <Button variant="contained" disabled={searchTerm?.length <= 3} onClick={() => searchForItem()}>Search</Button>
+                <CraftyCalcResultsGrid results={searchResults} />
+            </Grid>
+            <Grid container item xs={6} className="rightGrid">
+                <CraftyCalcCard itemId={2699} itemName="Cotton Coif" imageUrl="/i/040000/040305.png" />
+            </Grid>
+        </Grid>
     )
-
 }
